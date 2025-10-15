@@ -16,7 +16,6 @@ namespace ByCodersChallenge.Core.Tests.Application.Dtos.Validators.FinancialTran
             _validator = new ImportFinancialTransactionsInputValidator();
         }
 
-
         [Fact]
         public void Validate_InputIsValid_ReturnsIsValid()
         {
