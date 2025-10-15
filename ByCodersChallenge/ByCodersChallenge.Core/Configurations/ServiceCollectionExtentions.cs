@@ -1,6 +1,9 @@
-﻿using ByCodersChallenge.Core.Application.Services.Stores;
+﻿using ByCodersChallenge.Core.Application.Dtos.Stores;
+using ByCodersChallenge.Core.Application.Dtos.Validators.Stores;
+using ByCodersChallenge.Core.Application.Services.Stores;
 using ByCodersChallenge.Core.Application.Services.Stores.Interfaces;
 using ByCodersChallenge.Core.Application.UseCases.Stores;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ByCodersChallenge.Core.Configurations
@@ -19,6 +22,7 @@ namespace ByCodersChallenge.Core.Configurations
 
         public static void MapValidations(this IServiceCollection service)
         {
+            service.AddSingleton<IValidator<ImportFinancialTransactionsInput>, ImportFinancialTransactionsInputValidator>();
         }
     }
 }

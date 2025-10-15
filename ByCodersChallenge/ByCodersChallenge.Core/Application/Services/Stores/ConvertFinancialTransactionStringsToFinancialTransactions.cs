@@ -20,7 +20,7 @@ namespace ByCodersChallenge.Core.Application.Services.Stores
             return transactions;
         }
 
-        private FinancialTransaction ConvertFromCnabString(string line)
+        private static FinancialTransaction ConvertFromCnabString(string line)
         {
             var transaction = new FinancialTransaction(
                 (TransactionType)int.Parse(line.Substring(0, 1)),

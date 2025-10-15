@@ -8,7 +8,7 @@ namespace ByCodersChallenge.Core.Application.UseCases.Stores
 {
     public class ImportFinancialTransactionsUseCase : CommandUseCase<ImportFinancialTransactionsInput, ImportFinancialTransactionsOutput>
     {
-        private IConvertFinancialTransactionStringsToFinancialTransactions _convertFinancialTransactionStringsToFinancialTransactions;
+        private readonly IConvertFinancialTransactionStringsToFinancialTransactions _convertFinancialTransactionStringsToFinancialTransactions;
         private readonly IValidator<ImportFinancialTransactionsInput> _validator;
 
         protected override string SaveChangesErrorMessage => "Error while importing financial transactions";
