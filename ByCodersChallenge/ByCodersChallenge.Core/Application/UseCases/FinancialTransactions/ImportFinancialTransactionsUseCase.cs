@@ -3,6 +3,7 @@ using BasePoint.Core.UnitOfWork.Interfaces;
 using ByCodersChallenge.Core.Application.Dtos.FinancialTransactions;
 using ByCodersChallenge.Core.Application.Services.FinancialTransactions.Interfaces;
 using ByCodersChallenge.Core.Domain.Entities;
+using ByCodersChallenge.Core.Domain.Repositories.Interfaces.FinancialTransactions;
 using ByCodersChallenge.Core.Domain.Repositories.Interfaces.Stores;
 using FluentValidation;
 
@@ -12,18 +13,21 @@ namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
     {
         private readonly IConvertFinancialTransactionStringsToFinancialTransactions _convertFinancialTransactionStringsToFinancialTransactions;
         private readonly IStoreRepository _storeRepository;
+        private readonly IFinancialTransactionRepository _financialTransactionRepository;
         private readonly IValidator<ImportFinancialTransactionsInput> _validator;
 
         protected override string SaveChangesErrorMessage => "Error while importing financial transactions";
 
         public ImportFinancialTransactionsUseCase(
             IValidator<ImportFinancialTransactionsInput> validator,
+            IFinancialTransactionRepository financialTransactionRepository,
             IConvertFinancialTransactionStringsToFinancialTransactions convertFinancialTransactionStringsToFinancialTransactions,
             IStoreRepository storeRepository,
             IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _validator = validator;
             _convertFinancialTransactionStringsToFinancialTransactions = convertFinancialTransactionStringsToFinancialTransactions;
+            _financialTransactionRepository = financialTransactionRepository;
             _storeRepository = storeRepository;
         }
 
@@ -35,9 +39,16 @@ namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
 
             await PersistStoresFromTransactions(transactions);
 
+            PersistTransactions(transactions);
+
             await SaveChangesAsync(); // Handle all UnitOfWork commands
 
             return CreateSuccessOutput(new ImportFinancialTransactionsOutput());
+        }
+
+        private void PersistTransactions(List<FinancialTransaction> transactions)
+        {
+            transactions.ForEach(transaction => _financialTransactionRepository.Persist(transaction, UnitOfWork));
         }
 
         private async Task PersistStoresFromTransactions(List<FinancialTransaction> transactions)
