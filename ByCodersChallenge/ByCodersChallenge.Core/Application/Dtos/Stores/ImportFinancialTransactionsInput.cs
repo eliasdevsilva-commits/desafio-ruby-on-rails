@@ -2,6 +2,6 @@
 {
     public record ImportFinancialTransactionsInput
     {
-        public byte[] File { get; init; }
+        public List<string> TransactionLines { get; init; }
     }
 }

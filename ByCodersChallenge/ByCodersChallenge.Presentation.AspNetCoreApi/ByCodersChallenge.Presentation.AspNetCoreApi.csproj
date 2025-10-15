@@ -19,8 +19,4 @@
     <ProjectReference Include="..\ByCodersChallenge.Cqrs.Dapper\ByCodersChallenge.Cqrs.Dapper.csproj" />
 	<ProjectReference Include="..\ByCodersChallenge.Core\ByCodersChallenge.Core.csproj" />
   </ItemGroup>
-  
-   <ItemGroup>
-    <Folder Include="Controllers\" />   
-  </ItemGroup>
 </Project>
