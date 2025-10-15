@@ -47,9 +47,16 @@ namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
                 .DistinctBy(s => s.Name)
                 .ToList();
 
-            var storeTasks = distinctStores.Select(x => _storeRepository.GetStoreByName(x.Name));
+            var previousStores = new List<Store>();
 
-            var previousStores = await Task.WhenAll(storeTasks);
+            foreach (var store in distinctStores)
+            {
+                var previousStore = await _storeRepository.GetStoreByName(store.Name);
+
+                if (previousStore is not null)
+                    previousStores.Add(previousStore);
+            }
+
             var storeNames = previousStores.Select(x => x.Name);
 
             distinctStores.RemoveAll(x => storeNames.Contains(x.Name)); // remove stores that already exists

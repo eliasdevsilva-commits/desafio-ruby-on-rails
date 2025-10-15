@@ -42,7 +42,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.CommandProviders.Stores
             var sql = SqlSelectCommand
                  + Constants.StringEnter
                  + "Where" + Constants.StringEnter
-                 + "t.Id = @Id;";
+                 + "s.Id = @Id;";
 
             var parameters = new DynamicParameters();
 
@@ -56,7 +56,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.CommandProviders.Stores
             var sql = SqlSelectCommand
                  + Constants.StringEnter
                  + "Where" + Constants.StringEnter
-                 + "t.Name = @Name;";
+                 + "s.Name = @Name;";
 
             var parameters = new DynamicParameters();
 
@@ -70,7 +70,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.CommandProviders.Stores
             var sql = SqlSelectCommand
                  + Constants.StringEnter
                  + "Where" + Constants.StringEnter
-                 + "t.Name = @Name and t.Id <> @Id";
+                 + "s.Name = @Name and s.Id <> @Id";
 
             var parameters = new DynamicParameters();
 

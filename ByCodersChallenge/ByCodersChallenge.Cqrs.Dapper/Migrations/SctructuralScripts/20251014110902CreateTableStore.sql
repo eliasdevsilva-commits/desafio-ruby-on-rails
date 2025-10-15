@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `store` (
+  `Id` VARCHAR(36) NOT NULL,
+  `Name` VARCHAR(19) NOT NULL,
+  `Owner` VARCHAR(14) NOT NULL,
+  UNIQUE KEY `StoreName_UNIQUE` (`Name`),
+  PRIMARY KEY (`Id`));

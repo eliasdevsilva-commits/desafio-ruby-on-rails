@@ -8,6 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Migrations\SctructuralScripts\20251014110902CreateTableStore.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\SctructuralScripts\20251014110902CreateTableStore.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ByCodersChallenge.Core\ByCodersChallenge.Core.csproj" />
   </ItemGroup>
 
@@ -19,8 +27,7 @@
     <PackageReference Include="MySql.Data" Version="8.4.0" />
   </ItemGroup>
   
-  <ItemGroup>
-    <Folder Include="Migrations\SctructuralScripts\" />   
+  <ItemGroup>   
     <Folder Include="QueryProviders\" />   
     <Folder Include="Handlers\" />   
   </ItemGroup>
