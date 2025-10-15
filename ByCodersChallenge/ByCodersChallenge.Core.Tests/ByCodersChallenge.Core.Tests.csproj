@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>ByCodersChallenge.Core.Tests</RootNamespace>
+    <AssemblyName>ByCodersChallenge.Core.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ByCodersChallenge.Core\ByCodersChallenge.Core.csproj" />
+	<PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="Moq" Version="4.20.70" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.3.1" />
+    <PackageReference Include="xunit" Version="2.7.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Dtos\Builders\" />
+    <Folder Include="Application\Dtos\Validators\" />
+    <Folder Include="Application\Cqrs\QueryProvider\" />
+    <Folder Include="Application\UseCases\" />
+    <Folder Include="Domain\Cqrs\CommandProviders\" />
+    <Folder Include="Domain\Entities\" />
+	<Folder Include="Domain\Entities\Builders" />
+    <Folder Include="Domain\Repositories\" />
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
+</Project>

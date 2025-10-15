@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<RootNamespace>ByCodersChallenge.Core</RootNamespace>
+    <AssemblyName>ByCodersChallenge.Core</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BasePoint.Core" Version="0.0.21" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Dtos\Validators\" />
+    <Folder Include="Application\UseCases\" />
+	<Folder Include="Application\Cqrs\QueryProviders\" />
+    <Folder Include="Domain\Cqrs\CommandProviders\" />   
+    <Folder Include="Domain\Enumerators\" />
+    <Folder Include="Domain\Entities\Interfaces\" />
+    <Folder Include="Domain\Repositories\Interfaces\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+</Project>

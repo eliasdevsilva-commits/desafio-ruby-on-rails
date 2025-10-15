@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>5f282c79-9ec2-49cb-94e0-021bce8f7ba9</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>	
+	
+  <ItemGroup>
+   <PackageReference Include="BasePoint.Core.Presentation.AspNetCoreApi" Version="0.0.21" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ByCodersChallenge.Cqrs.Dapper\ByCodersChallenge.Cqrs.Dapper.csproj" />
+	<ProjectReference Include="..\ByCodersChallenge.Core\ByCodersChallenge.Core.csproj" />
+  </ItemGroup>
+  
+   <ItemGroup>
+    <Folder Include="Controllers\" />   
+  </ItemGroup>
+</Project>
