@@ -1,4 +1,8 @@
-﻿using BasePoint.Core.Presentation.AspNetCoreApi.Controllers;
+﻿using BasePoint.Core.Application.Cqrs.QueryProviders;
+using BasePoint.Core.Application.Dtos.Input;
+using BasePoint.Core.Application.UseCases;
+using BasePoint.Core.Presentation.AspNetCoreApi.Controllers;
+using ByCodersChallenge.Core.Application.Dtos.FinancialServices;
 using ByCodersChallenge.Core.Application.Dtos.FinancialTransactions;
 using ByCodersChallenge.Core.Application.UseCases.FinancialTransactions;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +14,15 @@ namespace ByCodersChallenge.Presentation.AspNetCoreApi.Controllers.FinancialTran
     public class FinancialTransactionController : BaseController
     {
         private readonly ImportFinancialTransactionsUseCase _importFinancialTransactionsUseCase;
+        private readonly GetPaginatedResultsUseCase<IListItemOutputCqrsQueryProvider<FinancialTransactionListItemOutput>, FinancialTransactionListItemOutput> _getPaginatedFinancialTransactionUseCase;
         public FinancialTransactionController(
             IHttpContextAccessor httpContextAccessor,
-            ImportFinancialTransactionsUseCase importFinancialTransactionsUseCase)
+            ImportFinancialTransactionsUseCase importFinancialTransactionsUseCase,
+            GetPaginatedResultsUseCase<IListItemOutputCqrsQueryProvider<FinancialTransactionListItemOutput>, FinancialTransactionListItemOutput> getPaginatedFinancialTransactionUseCase)
             : base(httpContextAccessor)
         {
             _importFinancialTransactionsUseCase = importFinancialTransactionsUseCase;
+            _getPaginatedFinancialTransactionUseCase = getPaginatedFinancialTransactionUseCase;
         }
 
         [HttpPost]
@@ -33,6 +40,11 @@ namespace ByCodersChallenge.Presentation.AspNetCoreApi.Controllers.FinancialTran
             return OutputConverter(await _importFinancialTransactionsUseCase.ExecuteAsync(input));
         }
 
-
+        [HttpPost("get-by-filter")]
+        [ProducesResponseType(typeof(IEnumerable<FinancialTransactionListItemOutput>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetPaginatedFinancialTransaction(GetPaginatedResultsInput input)
+        {
+            return OutputConverter(await _getPaginatedFinancialTransactionUseCase.ExecuteAsync(input));
+        }
     }
 }

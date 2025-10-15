@@ -1,6 +1,7 @@
 ﻿using BasePoint.Core.Application.Dtos.Input;
 using BasePoint.Core.Cqrs.Dapper.Extensions;
 using BasePoint.Core.Cqrs.Dapper.QueryProviders;
+using BasePoint.Core.Extensions;
 using BasePoint.Core.Shared;
 using ByCodersChallenge.Core.Application.Cqrs.QueryProviders.FinancialTransactions;
 using ByCodersChallenge.Core.Application.Dtos.FinancialServices;
@@ -41,7 +42,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.QueryProviders.FinancialTransactions
 
             CreateParameters(filters, out parameters, out sqlFilters);
 
-            sqlCommand += " WHERE " + sqlFilters;
+            sqlCommand += (!sqlFilters.IsNullOrEmpty() ? " WHERE " : string.Empty) + sqlFilters;
 
             var dapperParameters = new DynamicParameters(parameters);
 
@@ -58,7 +59,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.QueryProviders.FinancialTransactions
 
             CreateParameters(filters, out parameters, out sqlFilters);
 
-            sqlCommand += " WHERE " + sqlFilters +
+            sqlCommand += (!sqlFilters.IsNullOrEmpty() ? " WHERE " : string.Empty) + sqlFilters +
                     " ORDER BY TYPE LIMIT @PAGE_NUMBER, @ITENS_PER_PAGE ";
 
             parameters.Add("PAGE_NUMBER", (pageNumber - 1) * itemsPerPage);
