@@ -21,7 +21,6 @@
     <Folder Include="Domain\Entities\Interfaces\" />
     <Folder Include="Domain\Repositories\Interfaces\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Extensions\" />
   </ItemGroup>
 
 </Project>
