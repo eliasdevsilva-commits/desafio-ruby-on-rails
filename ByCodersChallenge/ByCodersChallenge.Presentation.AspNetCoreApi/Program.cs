@@ -11,6 +11,7 @@ var section = builder.Configuration.GetSection("AppSettings");
 builder.Services.MapRepositories();
 builder.Services.MapValidations();
 builder.Services.MapUseCases();
+builder.Services.MapServices();
 builder.Services.MapCommandProviders();
 builder.Services.MapQueryProviders();
 builder.Services.MapHttpContextAccessor();

@@ -20,35 +20,19 @@ namespace ByCodersChallenge.Presentation.AspNetCoreApi.Controllers.FinancialTran
 
         [HttpPost]
         [ProducesResponseType(typeof(ImportFinancialTransactionsOutput), StatusCodes.Status201Created)]
-        public async Task<IActionResult> ImportFinancialTransactions(IFormFile arquivo)
+        public async Task<IActionResult> ImportFinancialTransactions(IFormFile file)
         {
             using var memoryStream = new MemoryStream();
-            await arquivo.CopyToAsync(memoryStream);
-
-            var fileLines = GetStreamLines(memoryStream);
+            await file.CopyToAsync(memoryStream);
 
             var input = new ImportFinancialTransactionsInput
             {
-                TransactionLines = fileLines
+                MemoryStream = memoryStream
             };
 
             return OutputConverter(await _importFinancialTransactionsUseCase.ExecuteAsync(input));
         }
 
-        private static List<string> GetStreamLines(MemoryStream memoryStream)
-        {
-            var stringStream = new StreamReader(memoryStream);
 
-            var lines = new List<string>();
-
-            stringStream.BaseStream.Position = 0;
-
-            while (!stringStream.EndOfStream)
-            {
-                lines.Add(stringStream.ReadLine());
-            }
-
-            return lines;
-        }
     }
 }

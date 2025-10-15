@@ -2,6 +2,6 @@
 {
     public record ImportFinancialTransactionsInput
     {
-        public List<string> TransactionLines { get; init; }
+        public MemoryStream MemoryStream { get; init; }
     }
 }
