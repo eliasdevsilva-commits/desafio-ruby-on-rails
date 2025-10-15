@@ -74,6 +74,15 @@ namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
 
             // Persist method dont go direct to database, but creates commands and add in a context
             distinctStores.ForEach(store => _storeRepository.Persist(store, UnitOfWork));
+
+            foreach (var transaction in transactions)
+            {
+                // retrieve stores for database to endure integrity
+                var previousStore = await _storeRepository.GetStoreByName(transaction.Store.Name);
+
+                if (previousStore is not null)
+                    transaction.UpdateStore(previousStore);
+            }
         }
     }
 }

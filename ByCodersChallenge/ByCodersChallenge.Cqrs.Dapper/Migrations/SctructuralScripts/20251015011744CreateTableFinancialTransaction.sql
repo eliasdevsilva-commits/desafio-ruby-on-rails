@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS `financialtransaction` (
   `Id` VARCHAR(36) NOT NULL,
-  `TransactionTypeId` VARCHAR(36) NOT NULL,
+  `Type` VARCHAR(30) NOT NULL,
   `OccurrenceDate` DATETIME NOT NULL,
-  `Value` DECIMAL(0,0) NOT NULL,
+  `Value` DECIMAL(10,2) NOT NULL,
   `CPF` VARCHAR(11) NOT NULL,
   `Card` VARCHAR(12) NOT NULL,
   `StoreId` VARCHAR(36) NOT NULL,

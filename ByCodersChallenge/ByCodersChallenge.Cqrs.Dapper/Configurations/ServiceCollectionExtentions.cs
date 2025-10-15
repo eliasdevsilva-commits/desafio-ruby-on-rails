@@ -1,9 +1,13 @@
 ﻿using BasePoint.Core.Cqrs.Dapper.Handlers;
 using BasePoint.Core.Cqrs.Dapper.UnitOfWork;
 using BasePoint.Core.UnitOfWork.Interfaces;
+using ByCodersChallenge.Core.Domain.Cqrs.CommandProviders.FinancialTransactions;
 using ByCodersChallenge.Core.Domain.Cqrs.CommandProviders.Stores;
+using ByCodersChallenge.Core.Domain.Repositories.FinancialTransactions;
+using ByCodersChallenge.Core.Domain.Repositories.Interfaces.FinancialTransactions;
 using ByCodersChallenge.Core.Domain.Repositories.Interfaces.Stores;
 using ByCodersChallenge.Core.Domain.Repositories.Stores;
+using ByCodersChallenge.Cqrs.Dapper.CommandProviders.FinancialTransactions;
 using ByCodersChallenge.Cqrs.Dapper.CommandProviders.Stores;
 using Dapper;
 using Microsoft.Extensions.Configuration;
@@ -39,6 +43,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.Configurations
         {
             service.AddSingleton<IUnitOfWork, DapperUnitOfWork>();
             service.AddSingleton<IStoreCqrsCommandProvider, StoreCqrsCommandProvider>();
+            service.AddSingleton<IFinancialTransactionCqrsCommandProvider, FinancialTransactionCqrsCommandProvider>();
         }
 
         public static void MapQueryProviders(this IServiceCollection service)
@@ -48,6 +53,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.Configurations
         public static void MapRepositories(this IServiceCollection service)
         {
             service.AddSingleton<IStoreRepository, StoreRepository>();
+            service.AddSingleton<IFinancialTransactionRepository, FinancialTransactionRepository>();
         }
     }
 }

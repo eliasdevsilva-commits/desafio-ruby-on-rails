@@ -46,7 +46,7 @@ namespace ByCodersChallenge.Core.Domain.Entities
 
         public void UpdateStore(Store store)
         {
-            throw new NotImplementedException();
+            Store = store;
         }
     }
 }
