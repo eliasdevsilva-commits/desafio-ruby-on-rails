@@ -1,11 +1,13 @@
-﻿using System.Data;
-using BasePoint.Core.Cqrs.Dapper.Handlers;
+﻿using BasePoint.Core.Cqrs.Dapper.Handlers;
 using BasePoint.Core.Cqrs.Dapper.UnitOfWork;
 using BasePoint.Core.UnitOfWork.Interfaces;
+using ByCodersChallenge.Core.Domain.Repositories.Interfaces.Stores;
+using ByCodersChallenge.Core.Domain.Repositories.Stores;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace ByCodersChallenge.Cqrs.Dapper.Configurations
 {
@@ -33,6 +35,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.Configurations
 
         public static void MapCommandProviders(this IServiceCollection service)
         {
+            service.AddSingleton<IUnitOfWork, DapperUnitOfWork>();
         }
 
         public static void MapQueryProviders(this IServiceCollection service)
@@ -41,6 +44,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.Configurations
 
         public static void MapRepositories(this IServiceCollection service)
         {
+            service.AddSingleton<IStoreRepository, StoreRepository>();
         }
     }
 }
