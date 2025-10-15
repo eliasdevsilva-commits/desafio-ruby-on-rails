@@ -9,10 +9,12 @@
 
   <ItemGroup>
     <None Remove="Migrations\SctructuralScripts\20251014110902CreateTableStore.sql" />
+    <None Remove="Migrations\SctructuralScripts\20251015011744CreateTableFinancialTransaction.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Migrations\SctructuralScripts\20251014110902CreateTableStore.sql" />
+    <EmbeddedResource Include="Migrations\SctructuralScripts\20251015011744CreateTableFinancialTransaction.sql" />
   </ItemGroup>
 
   <ItemGroup>
