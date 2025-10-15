@@ -1,5 +1,4 @@
 ﻿using BasePoint.Core.Application.UseCases;
-using BasePoint.Core.Extensions;
 using BasePoint.Core.UnitOfWork.Interfaces;
 using ByCodersChallenge.Core.Application.Dtos.FinancialTransactions;
 using ByCodersChallenge.Core.Application.Services.FinancialTransactions.Interfaces;
@@ -34,18 +33,26 @@ namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
 
             var transactions = _convertFinancialTransactionStringsToFinancialTransactions.Convert(input.MemoryStream);
 
-            PersistStoresFromTransactions(transactions);
+            await PersistStoresFromTransactions(transactions);
 
-            await SaveChangesAsync();
+            await SaveChangesAsync(); // Handle all UnitOfWork commands
 
             return CreateSuccessOutput(new ImportFinancialTransactionsOutput());
         }
 
-        private void PersistStoresFromTransactions(List<FinancialTransaction> transactions)
+        private async Task PersistStoresFromTransactions(List<FinancialTransaction> transactions)
         {
             var distinctStores = transactions
                 .Select(s => s.Store)
-                .DistinctBy(s => s.Name);
+                .DistinctBy(s => s.Name)
+                .ToList();
+
+            var storeTasks = distinctStores.Select(x => _storeRepository.GetStoreByName(x.Name));
+
+            var previousStores = await Task.WhenAll(storeTasks);
+            var storeNames = previousStores.Select(x => x.Name);
+
+            distinctStores.RemoveAll(x => storeNames.Contains(x.Name)); // remove stores that already exists
 
             // Persist method dont go direct to database, but creates commands and add in a context
             distinctStores.ForEach(store => _storeRepository.Persist(store, UnitOfWork));
