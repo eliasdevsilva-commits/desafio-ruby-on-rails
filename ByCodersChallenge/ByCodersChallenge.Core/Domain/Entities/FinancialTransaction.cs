@@ -18,5 +18,35 @@ namespace ByCodersChallenge.Core.Domain.Entities
         public virtual string Card { get; protected set; } = card;
 
         public virtual Store Store { get; protected set; } = store;
+
+        public void UpdateCard(string card)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateCPF(string cpf)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateOccurrenceDate(DateTime dateTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateType(TransactionType transactionType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateValue(decimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateStore(Store store)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
