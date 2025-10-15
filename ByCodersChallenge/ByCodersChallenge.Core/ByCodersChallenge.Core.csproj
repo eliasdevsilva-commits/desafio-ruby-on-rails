@@ -16,7 +16,6 @@
   <ItemGroup>
 	<Folder Include="Application\Cqrs\QueryProviders\" />
     <Folder Include="Domain\Entities\Interfaces\" />
-	<Folder Include="Domain\Cqrs\CommandProviders\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>
 
