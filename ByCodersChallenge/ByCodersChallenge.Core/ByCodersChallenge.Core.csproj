@@ -14,12 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Dtos\Validators\" />
-    <Folder Include="Application\UseCases\" />
 	<Folder Include="Application\Cqrs\QueryProviders\" />
-    <Folder Include="Domain\Cqrs\CommandProviders\" />
+	<Folder Include="Application\Dtos\Validators\Stores\" />
     <Folder Include="Domain\Entities\Interfaces\" />
-    <Folder Include="Domain\Repositories\Interfaces\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>
 
