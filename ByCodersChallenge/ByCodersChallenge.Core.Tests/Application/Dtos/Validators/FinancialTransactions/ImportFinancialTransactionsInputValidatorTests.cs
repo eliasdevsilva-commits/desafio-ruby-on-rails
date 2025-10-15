@@ -1,11 +1,11 @@
 ﻿using BasePoint.Core.Extensions;
-using ByCodersChallenge.Core.Application.Dtos.Validators.Stores;
+using ByCodersChallenge.Core.Application.Dtos.Validators.FinancialTransactions;
 using ByCodersChallenge.Core.Shared;
 using ByCodersChallenge.Core.Tests.Application.Dtos.Builders.Stores;
 using FluentAssertions;
 using Xunit;
 
-namespace ByCodersChallenge.Core.Tests.Application.Dtos.Validators.Stores
+namespace ByCodersChallenge.Core.Tests.Application.Dtos.Validators.FinancialTransactions
 {
     public class ImportFinancialTransactionsInputValidatorTests
     {

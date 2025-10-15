@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Application\Services\Stores\Scenarios\CNAB.txt" />
+    <None Remove="Application\Services\FinancialTransactions\Scenarios\CNAB.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Application\Services\Stores\Scenarios\CNAB.txt">
+    <EmbeddedResource Include="Application\Services\FinancialTransactions\Scenarios\CNAB.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

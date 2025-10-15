@@ -1,9 +1,9 @@
-﻿using ByCodersChallenge.Core.Application.Services.Stores.Interfaces;
+﻿using ByCodersChallenge.Core.Application.Services.FinancialTransactions.Interfaces;
 using ByCodersChallenge.Core.Domain.Entities;
 using ByCodersChallenge.Core.Domain.Enumerators;
 using System.Globalization;
 
-namespace ByCodersChallenge.Core.Application.Services.Stores
+namespace ByCodersChallenge.Core.Application.Services.FinancialTransactions
 {
     public class ConvertFinancialTransactionStringsToFinancialTransactions : IConvertFinancialTransactionStringsToFinancialTransactions
     {

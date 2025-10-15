@@ -1,10 +1,10 @@
-﻿using ByCodersChallenge.Core.Application.Services.Stores;
+﻿using ByCodersChallenge.Core.Application.Services.FinancialTransactions;
 using ByCodersChallenge.Core.Domain.Entities;
 using ByCodersChallenge.Core.Domain.Enumerators;
 using FluentAssertions;
 using Xunit;
 
-namespace ByCodersChallenge.Core.Tests.Application.Services.Stores
+namespace ByCodersChallenge.Core.Tests.Application.Services.FinancialTransactions
 {
     public class ConvertFinancialTransactionStringsToFinancialTransactionsTests
     {
@@ -18,7 +18,7 @@ namespace ByCodersChallenge.Core.Tests.Application.Services.Stores
         [Fact]
         public void Convert_WhenEverythingIsOk_ReturnsFinancialTransactions()
         {
-            using var fileStream = new FileStream("Application/Services/Stores/Scenarios/CNAB.txt", FileMode.Open);
+            using var fileStream = new FileStream("Application/Services/FinancialTransactions/Scenarios/CNAB.txt", FileMode.Open);
 
             var memoryStream = new MemoryStream();
 

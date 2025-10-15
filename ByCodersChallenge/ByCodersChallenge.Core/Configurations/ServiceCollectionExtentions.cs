@@ -1,8 +1,8 @@
-﻿using ByCodersChallenge.Core.Application.Dtos.Stores;
-using ByCodersChallenge.Core.Application.Dtos.Validators.Stores;
-using ByCodersChallenge.Core.Application.Services.Stores;
-using ByCodersChallenge.Core.Application.Services.Stores.Interfaces;
-using ByCodersChallenge.Core.Application.UseCases.Stores;
+﻿using ByCodersChallenge.Core.Application.Dtos.FinancialTransactions;
+using ByCodersChallenge.Core.Application.Dtos.Validators.FinancialTransactions;
+using ByCodersChallenge.Core.Application.Services.FinancialTransactions;
+using ByCodersChallenge.Core.Application.Services.FinancialTransactions.Interfaces;
+using ByCodersChallenge.Core.Application.UseCases.FinancialTransactions;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 

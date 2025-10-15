@@ -1,4 +1,4 @@
-﻿namespace ByCodersChallenge.Core.Application.Dtos.Stores
+﻿namespace ByCodersChallenge.Core.Application.Dtos.FinancialTransactions
 {
     public class ImportFinancialTransactionsOutput
     {

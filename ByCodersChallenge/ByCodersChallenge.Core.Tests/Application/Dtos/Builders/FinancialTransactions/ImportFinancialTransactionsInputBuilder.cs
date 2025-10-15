@@ -1,4 +1,4 @@
-﻿using ByCodersChallenge.Core.Application.Dtos.Stores;
+﻿using ByCodersChallenge.Core.Application.Dtos.FinancialTransactions;
 
 namespace ByCodersChallenge.Core.Tests.Application.Dtos.Builders.Stores
 {

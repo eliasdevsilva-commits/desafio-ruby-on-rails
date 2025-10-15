@@ -1,10 +1,10 @@
 ﻿using BasePoint.Core.Application.UseCases;
 using BasePoint.Core.UnitOfWork.Interfaces;
-using ByCodersChallenge.Core.Application.Dtos.Stores;
-using ByCodersChallenge.Core.Application.Services.Stores.Interfaces;
+using ByCodersChallenge.Core.Application.Dtos.FinancialTransactions;
+using ByCodersChallenge.Core.Application.Services.FinancialTransactions.Interfaces;
 using FluentValidation;
 
-namespace ByCodersChallenge.Core.Application.UseCases.Stores
+namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
 {
     public class ImportFinancialTransactionsUseCase : CommandUseCase<ImportFinancialTransactionsInput, ImportFinancialTransactionsOutput>
     {

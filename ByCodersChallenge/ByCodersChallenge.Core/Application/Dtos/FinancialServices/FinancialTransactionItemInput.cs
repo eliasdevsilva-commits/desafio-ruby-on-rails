@@ -1,7 +1,7 @@
 ﻿using ByCodersChallenge.Core.Domain.Entities;
 using ByCodersChallenge.Core.Domain.Enumerators;
 
-namespace ByCodersChallenge.Core.Application.Dtos.Stores
+namespace ByCodersChallenge.Core.Application.Dtos.FinancialTransactions
 {
     public record FinancialTransactionItemInput
     {

@@ -1,6 +1,6 @@
 ﻿using BasePoint.Core.Presentation.AspNetCoreApi.Controllers;
-using ByCodersChallenge.Core.Application.Dtos.Stores;
-using ByCodersChallenge.Core.Application.UseCases.Stores;
+using ByCodersChallenge.Core.Application.Dtos.FinancialTransactions;
+using ByCodersChallenge.Core.Application.UseCases.FinancialTransactions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ByCodersChallenge.Presentation.AspNetCoreApi.Controllers.FinancialTransactions

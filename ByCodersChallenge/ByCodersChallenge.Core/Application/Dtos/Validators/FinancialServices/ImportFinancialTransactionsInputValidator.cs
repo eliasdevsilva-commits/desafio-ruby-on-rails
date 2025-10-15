@@ -1,9 +1,9 @@
 ﻿using BasePoint.Core.Extensions;
-using ByCodersChallenge.Core.Application.Dtos.Stores;
+using ByCodersChallenge.Core.Application.Dtos.FinancialTransactions;
 using ByCodersChallenge.Core.Shared;
 using FluentValidation;
 
-namespace ByCodersChallenge.Core.Application.Dtos.Validators.Stores
+namespace ByCodersChallenge.Core.Application.Dtos.Validators.FinancialTransactions
 {
     public class ImportFinancialTransactionsInputValidator : AbstractValidator<ImportFinancialTransactionsInput>
     {
