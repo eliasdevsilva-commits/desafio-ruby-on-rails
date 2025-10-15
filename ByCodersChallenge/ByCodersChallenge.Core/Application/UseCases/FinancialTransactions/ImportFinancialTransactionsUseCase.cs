@@ -41,7 +41,7 @@ namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
 
             PersistTransactions(transactions);
 
-            await SaveChangesAsync(); // Handle all UnitOfWork commands
+            await SaveChangesAsync(); // Handle all UnitOfWork commands (for stores and financialTransactions)
 
             return CreateSuccessOutput(new ImportFinancialTransactionsOutput());
         }
@@ -77,8 +77,7 @@ namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
 
             foreach (var transaction in transactions)
             {
-                // retrieve stores for database to endure integrity
-                var previousStore = await _storeRepository.GetStoreByName(transaction.Store.Name);
+                var previousStore = previousStores.FirstOrDefault(x => x.Name == transaction.Store.Name);
 
                 if (previousStore is not null)
                     transaction.UpdateStore(previousStore);

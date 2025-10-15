@@ -14,7 +14,14 @@ namespace ByCodersChallenge.Core.Application.Services.FinancialTransactions
 
             foreach (var line in lines)
             {
-                transactions.Add(ConvertFromCnabString(line));
+                var transaction = ConvertFromCnabString(line);
+
+                var previousStore = transactions.FirstOrDefault(t => t.Store.Name == transaction.Store.Name);
+
+                if (previousStore is not null)
+                    transaction.UpdateStore(previousStore.Store);
+
+                transactions.Add(transaction);
             }
 
             return transactions;
