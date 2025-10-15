@@ -20,11 +20,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="EntityCommands\" />
-    <Folder Include="CommandProviders\" />
     <Folder Include="Migrations\SctructuralScripts\" />   
     <Folder Include="QueryProviders\" />   
-    <Folder Include="TableDefinitions\" />   
     <Folder Include="Handlers\" />   
   </ItemGroup>
 </Project>
