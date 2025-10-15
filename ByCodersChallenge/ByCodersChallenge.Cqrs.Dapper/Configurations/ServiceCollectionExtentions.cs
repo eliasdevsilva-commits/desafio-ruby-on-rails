@@ -1,6 +1,7 @@
 ﻿using BasePoint.Core.Cqrs.Dapper.Handlers;
 using BasePoint.Core.Cqrs.Dapper.UnitOfWork;
 using BasePoint.Core.UnitOfWork.Interfaces;
+using ByCodersChallenge.Core.Application.Cqrs.QueryProviders.FinancialTransactions;
 using ByCodersChallenge.Core.Domain.Cqrs.CommandProviders.FinancialTransactions;
 using ByCodersChallenge.Core.Domain.Cqrs.CommandProviders.Stores;
 using ByCodersChallenge.Core.Domain.Repositories.FinancialTransactions;
@@ -9,6 +10,7 @@ using ByCodersChallenge.Core.Domain.Repositories.Interfaces.Stores;
 using ByCodersChallenge.Core.Domain.Repositories.Stores;
 using ByCodersChallenge.Cqrs.Dapper.CommandProviders.FinancialTransactions;
 using ByCodersChallenge.Cqrs.Dapper.CommandProviders.Stores;
+using ByCodersChallenge.Cqrs.Dapper.QueryProviders.FinancialTransactions;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +50,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.Configurations
 
         public static void MapQueryProviders(this IServiceCollection service)
         {
+            service.AddSingleton<IFinancialTransactionListItemOutputCqrsQueryProvider, FinancialTransactionListItemOutputCqrsQueryProvider>();
         }
 
         public static void MapRepositories(this IServiceCollection service)
