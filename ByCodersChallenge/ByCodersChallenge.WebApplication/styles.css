@@ -142,7 +142,7 @@ input[type="file"]::file-selector-button:hover {
   display: inline-block;
 }
 
-.button {
+button {
   background: #0078d7;
   color: white;
   border: none;

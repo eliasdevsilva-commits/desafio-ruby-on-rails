@@ -1,6 +1,6 @@
-const apiUrl = window.location.hostname === 'localhost' 
-    ? 'http://localhost:8080/api/financial-transactions'
-    : 'http://api:8080/api/financial-transactions';
+const apiUrl = window.location.hostname === 'localhost'
+  ? 'http://localhost:8080/api/financial-transactions'
+  : 'http://api:8080/api/financial-transactions';
 
 const form = document.getElementById('uploadForm');
 const fileInput = document.getElementById('fileInput');
@@ -19,42 +19,36 @@ form.addEventListener('submit', async (event) => {
   await loadTransactions();
 });
 
-header.addEventListener('click', () => {
-  const isVisible = txDiv.style.display !== 'none';
-  txDiv.style.display = isVisible ? 'none' : 'block';
-  header.classList.toggle('active', !isVisible);
-});
-
 document.addEventListener('DOMContentLoaded', async () => {
   await loadTransactions();
 });
 
 async function loadTransactions() {
-    const container = document.getElementById('transactionsContainer');
-    const totalDiv = document.getElementById('totalBalance');
-    container.innerHTML = '<div>Loading...</div>';
+  const container = document.getElementById('transactionsContainer');
+  const totalDiv = document.getElementById('totalBalance');
+  container.innerHTML = '<div>Loading...</div>';
+  totalDiv.textContent = '';
+
+  const filterBody = {
+    filters: [],
+    pageNumber: 1,
+    itemsPerPage: 10000,
+  };
+
+  try {
+    const data = await getFinancialTransactionsByFilter(filterBody);
+    const transactions = data.resultsInPage;
+
+    const totalGeneral = transactions.reduce((sum, t) => sum + (t.value || 0), 0);
+    totalDiv.innerHTML = `Total Balance: <span class="${totalGeneral < 0 ? 'negative' : 'positive'}">${formatCurrency(totalGeneral)}</span>`;
+
+    const grouped = groupByStore(transactions);
+    renderStores(grouped);
+  } catch (error) {
+    console.error('Erro ao carregar transações:', error);
+    container.innerHTML = '<div>Error loading transactions.</div>';
     totalDiv.textContent = '';
-
-    const filterBody = {
-        filters: [],
-        pageNumber: 1,
-        itemsPerPage: 10000,
-    };
-
-    try {
-        const data = await getFinancialTransactionsByFilter(filterBody);
-        const transactions = data.resultsInPage;
-      
-        const totalGeneral = transactions.reduce((sum, t) => sum + (t.value || 0), 0);
-        totalDiv.innerHTML = `Total Balance: <span class="${totalGeneral < 0 ? 'negative' : 'positive'}">${formatCurrency(totalGeneral)}</span>`;
-
-        const grouped = groupByStore(transactions);
-        renderStores(grouped);
-    } catch (error) {
-        console.error('Erro ao carregar transações:', error);
-        container.innerHTML = '<div>Error loading transactions.</div>';
-        totalDiv.textContent = '';
-    }
+  }
 }
 
 
@@ -114,9 +108,10 @@ function renderStores(grouped) {
     txDiv.style.display = 'none';
 
     header.addEventListener('click', () => {
-      const visible = txDiv.style.display === 'block';
-      txDiv.style.display = visible ? 'none' : 'block';
-      header.querySelector('.arrow').textContent = visible ? '▼' : '▲';
+      const isVisible = txDiv.style.display !== 'none';
+      txDiv.style.display = isVisible ? 'none' : 'block';
+      header.classList.toggle('active', !isVisible);
+      header.querySelector('.arrow').textContent = isVisible ? '▼' : '▲';
     });
 
     storeDiv.appendChild(header);
