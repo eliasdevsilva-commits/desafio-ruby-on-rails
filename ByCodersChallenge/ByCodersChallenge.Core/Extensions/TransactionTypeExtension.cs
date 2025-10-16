@@ -1,4 +1,5 @@
 ﻿using ByCodersChallenge.Core.Domain.Enumerators;
+using ByCodersChallenge.Core.Shared;
 
 namespace ByCodersChallenge.Core.Extensions
 {
@@ -17,7 +18,7 @@ namespace ByCodersChallenge.Core.Extensions
                 Domain.Enumerators.TransactionType.TEDReceipt => 1,
                 Domain.Enumerators.TransactionType.DOCReceipt => 1,
                 Domain.Enumerators.TransactionType.Rent => -1,
-                _ => throw new ArgumentOutOfRangeException(nameof(transactionType), transactionType, null)
+                _ => throw new ArgumentOutOfRangeException(SharedConstants.ErrorMessages.TransactionTypeIsInvalid)
             };
         }
 

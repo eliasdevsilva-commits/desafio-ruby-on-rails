@@ -13,6 +13,8 @@
             public static readonly string StoreOwnerIsInvalid = "004;Store name is invalid.";
 
             public static readonly string GivenStoreIsInvalid = "005;Given Store name is invalid.";
+
+            public static readonly string TransactionTypeIsInvalid = "006;Transaction type is invalid.";
         }
 
         public static class Restrictions
