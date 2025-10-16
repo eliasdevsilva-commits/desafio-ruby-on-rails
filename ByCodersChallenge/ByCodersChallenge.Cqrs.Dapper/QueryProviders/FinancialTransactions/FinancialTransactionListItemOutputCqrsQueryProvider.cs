@@ -21,12 +21,12 @@ namespace ByCodersChallenge.Cqrs.Dapper.QueryProviders.FinancialTransactions
 											 t.Card,
 											 s.Name as StoreName,
 											 s.Owner as StoreOwner
-											 FROM FinancialTransaction t
-											 INNER JOIN Store s ON (s.Id = t.StoreId)";
+											 FROM financialtransaction t
+											 INNER JOIN store s ON (s.Id = t.StoreId)";
 
         private readonly string SqlCountSelectCommand = @"SELECT
 											 Count(t.Id) as Count
-											 FROM FinancialTransaction t";
+											 FROM financialtransaction t";
 
         public FinancialTransactionListItemOutputCqrsQueryProvider(IDbConnection connection) : base(connection)
         {

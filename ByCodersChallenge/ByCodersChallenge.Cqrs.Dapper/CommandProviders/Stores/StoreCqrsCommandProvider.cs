@@ -15,7 +15,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.CommandProviders.Stores
 											 s.Id,
 											 s.Name,
 											 s.Owner
-											 FROM Store s";
+											 FROM store s";
 
 
         public StoreCqrsCommandProvider(IDbConnection connection) : base(connection)

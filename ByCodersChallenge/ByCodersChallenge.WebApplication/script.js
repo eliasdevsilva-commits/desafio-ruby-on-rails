@@ -1,5 +1,6 @@
-//const API_URL = 'https://localhost:7274/api/financial-transactions';
-const API_URL = 'http://api:8080/api/financial-transactions';
+const apiUrl = window.location.hostname === 'localhost' 
+    ? 'http://localhost:8080/api/financial-transactions'
+    : 'http://api:8080/api/financial-transactions';
 
 const form = document.getElementById('uploadForm');
 const fileInput = document.getElementById('fileInput');
@@ -131,7 +132,7 @@ async function uploadFile(file) {
   formData.append('file', file);
 
   try {
-    const response = await fetch(`${API_URL}`, {
+    const response = await fetch(`${apiUrl}`, {
       method: 'POST',
       body: formData
     });
@@ -150,7 +151,7 @@ async function uploadFile(file) {
 
 async function getFinancialTransactionsByFilter(filterBody) {
   try {
-    const response = await fetch(`${API_URL}/get-by-filter`, {
+    const response = await fetch(`${apiUrl}/get-by-filter`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

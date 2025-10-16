@@ -20,8 +20,8 @@ namespace ByCodersChallenge.Cqrs.Dapper.CommandProviders.FinancialTransactions
 											 t.Card,
 											 s.Name,
 											 s.Owner,
-											 FROM FinancialTransaction t
-											 INNER JOIN Store s ON (s.Id = t.StoreId)";
+											 FROM financialtransaction t
+											 INNER JOIN store s ON (s.Id = t.StoreId)";
 
         public FinancialTransactionCqrsCommandProvider(IDbConnection connection) : base(connection)
         {

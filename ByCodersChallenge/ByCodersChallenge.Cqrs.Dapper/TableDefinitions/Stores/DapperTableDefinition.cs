@@ -8,7 +8,7 @@ namespace ByCodersChallenge.Cqrs.Dapper.TableDefinitions.Stores
     {
         public static readonly DapperTableDefinition TableDefinition = new DapperTableDefinition
         {
-            TableName = "Store",
+            TableName = "store",
             ColumnDefinitions = new List<DapperTableColumnDefinition>()
             {
                 new DapperTableColumnDefinition

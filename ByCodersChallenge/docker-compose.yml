@@ -1,12 +1,15 @@
 services:
   api:
     build:
-      context: ./
+      context: ./  
     container_name: api
     ports:
-      - "5000:8080"          # local:container Port
+      - "8080:8080"          # local:container Port
     environment:
       - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=server=mysql;port=3306;database=ByCodersChallenge;user=root;password=123456
+    depends_on:
+      - mysql
     networks:
       - app-network
 
@@ -15,9 +18,23 @@ services:
       context: ./ByCodersChallenge.WebApplication
     container_name: web
     ports:
-      - "8080:80"            # Local port to access the website
+      - "3000:80"            # Local port to access the website
     depends_on:
       - api
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: bycoderschallenge
+      MYSQL_USER: bycoders
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3307:3306"
     networks:
       - app-network
 
