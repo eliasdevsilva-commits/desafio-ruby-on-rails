@@ -82,7 +82,7 @@ function renderStores(grouped) {
       <tbody>
         ${transactions.map(tx => `
           <tr>
-            <td>${tx.transactionType ?? ''}</td>
+            <td>${tx.type ?? ''}</td>
             <td>${tx.occurrenceDate ?? ''}</td>
             <td>${formatCurrency(tx.value)}</td>
             <td>${tx.cpf ?? ''}</td>
