@@ -6,7 +6,10 @@ namespace ByCodersChallenge.Core.Domain.Entities
 {
     public class Store : BaseEntity
     {
-        public Store(string name, string owner)
+        protected Store()
+        {
+        }
+        public Store(string name, string owner) : this()
         {
             ValidationException.ThrowIfNullOrEmpty(name, SharedConstants.ErrorMessages.StoreNameIsInvalid);
             ValidationException.ThrowIfNullOrEmpty(owner, SharedConstants.ErrorMessages.StoreOwnerIsInvalid);

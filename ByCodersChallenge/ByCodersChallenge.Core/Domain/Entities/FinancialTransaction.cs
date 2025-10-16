@@ -8,13 +8,17 @@ namespace ByCodersChallenge.Core.Domain.Entities
 {
     public class FinancialTransaction : BaseEntity
     {
+        protected FinancialTransaction()
+        {
+        }
+
         public FinancialTransaction(
             TransactionType type,
             DateTime occurrenceDate,
             decimal value,
             string cpf,
             string card,
-            Store store)
+            Store store) : this()
         {
             Type = type;
             OccurrenceDate = occurrenceDate;
