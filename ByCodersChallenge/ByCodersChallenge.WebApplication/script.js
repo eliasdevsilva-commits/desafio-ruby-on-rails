@@ -1,4 +1,5 @@
-const API_URL = 'https://localhost:7274/api/financial-transactions';
+//const API_URL = 'https://localhost:7274/api/financial-transactions';
+const API_URL = 'http://api:8080/api/financial-transactions';
 
 const form = document.getElementById('uploadForm');
 const fileInput = document.getElementById('fileInput');
