@@ -2,9 +2,10 @@
 {
     public class ImportFinancialTransactionsOutput
     {
-        public ImportFinancialTransactionsOutput()
+        public ImportFinancialTransactionsOutput(bool result)
         {
-
+            Result = result;
         }
+        public bool Result { get; }
     }
 }

@@ -43,7 +43,7 @@ namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
 
             await SaveChangesAsync(); // Handle all UnitOfWork commands (for stores and financialTransactions)
 
-            return CreateSuccessOutput(new ImportFinancialTransactionsOutput());
+            return CreateSuccessOutput(new ImportFinancialTransactionsOutput(true));
         }
 
         private void PersistTransactions(List<FinancialTransaction> transactions)
