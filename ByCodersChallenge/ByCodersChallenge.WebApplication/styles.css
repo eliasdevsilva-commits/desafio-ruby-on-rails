@@ -1,25 +1,104 @@
-/* Reset básico */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f7f9fc;
-  color: #333;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f4f7fb;
   margin: 0;
   padding: 20px;
+  color: #333;
 }
 
-/* Título principal */
 h1 {
-  color: #2b3e50;
   text-align: center;
+  color: #1e293b;
+}
+
+#result {
+  text-align: center;
+  color: #007bff;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
-/* Formulário de upload */
-form {
+.store {
+  background: #e8effa;
+  border-radius: 10px;
+  margin: 10px auto;
+  max-width: 900px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.store-header {
   display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 30px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  cursor: pointer;
+  background: #e0e9ff;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.store-header:hover {
+  background: #d4e1ff;
+}
+
+.store-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.store-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.store-owner {
+  font-size: 13px;
+  color: #555;
+}
+
+.store-summary {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrow {
+  font-size: 14px;
+}
+
+.transactions {
+  background: #fff;
+  padding: 10px 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  background: #f3f4f6;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.positive {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.negative {
+  color: #e11d48;
+  font-weight: bold;
 }
 
 input[type="file"] {
@@ -28,112 +107,49 @@ input[type="file"] {
   border-radius: 6px;
   background: white;
   cursor: pointer;
+  font-size: 0.95rem;
+  color: #2b3e50;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-button {
+input[type="file"]:focus {
+  border-color: #0078d7;
+  box-shadow: 0 0 0 3px rgba(0,120,215,0.2);
+  outline: none;
+}
+
+input[type="file"]::file-selector-button {
+  background: #0078d7;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px 0 0 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: #005fa3;
+}
+
+.upload-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.upload-container input[type="file"] {
+  display: inline-block;
+}
+
+.button {
   background: #0078d7;
   color: white;
   border: none;
   padding: 10px 16px;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background: #005fa3;
-}
-
-#result {
-  text-align: center;
-  margin-bottom: 20px;
-  font-weight: bold;
-  color: #0078d7;
-}
-
-/* Container principal */
-#transactionsContainer {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* Cada loja */
-.store {
-  background: white;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  overflow: hidden;
-}
-
-/* Cabeçalho da loja (accordion) */
-.store-header {
-  background: #e9f0fa;
-  color: #2b3e50;
-  padding: 15px 20px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
   transition: background 0.3s;
-  position: relative;
-}
-
-.store-header:hover {
-  background: #dbe8f8;
-}
-
-/* Indicador visual do estado (seta para cima/baixo) */
-.store-header::after {
-  content: '▾';
-  font-size: 1.2rem;
-  transition: transform 0.3s;
-}
-
-.store-header.active::after {
-  transform: rotate(-180deg);
-}
-
-/* Transações (detalhes) */
-.transactions {
-  display: none;
-  padding: 0 15px 15px;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Tabela */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  font-size: 0.95rem;
-}
-
-th, td {
-  text-align: left;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-th {
-  background: #f0f4f9;
-  font-weight: 600;
-}
-
-tr:hover {
-  background: #f9fbfd;
-}
-
-/* Valor monetário */
-td:nth-child(3) {
-  font-weight: 500;
-  color: #0078d7;
 }

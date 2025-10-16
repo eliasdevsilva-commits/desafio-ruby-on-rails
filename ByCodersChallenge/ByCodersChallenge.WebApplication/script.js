@@ -61,6 +61,7 @@ function renderStores(grouped) {
   Object.entries(grouped).forEach(([store, transactions]) => {
     const totalValue = transactions.reduce((sum, t) => sum + (t.value || 0), 0);
     const totalCount = transactions.length;
+    const ownerName = transactions[0]?.storeOwner ?? 'Unknown';
 
     const storeDiv = document.createElement('div');
     storeDiv.className = 'store';
@@ -68,8 +69,14 @@ function renderStores(grouped) {
     const header = document.createElement('div');
     header.className = 'store-header';
     header.innerHTML = `
-      <span>${store}</span>
-      <span>${totalCount} transactions | ${formatCurrency(totalValue)}</span>
+      <div class="store-info">
+        <span class="store-name">${store}</span>
+        <span class="store-owner">Owner: ${ownerName}</span>
+      </div>
+      <div class="store-summary">
+        <span>${totalCount} transactions | Total balance: <strong class="${totalValue < 0 ? 'negative' : 'positive'}">${formatCurrency(totalValue)}</strong></span>
+        <span class="arrow">▼</span>
+      </div>
     `;
 
     const txDiv = document.createElement('div');
@@ -84,7 +91,6 @@ function renderStores(grouped) {
           <th>Value</th>
           <th>CPF</th>
           <th>Card</th>
-          <th>Store Owner</th>
         </tr>
       </thead>
       <tbody>
@@ -92,19 +98,21 @@ function renderStores(grouped) {
           <tr>
             <td>${tx.type ?? ''}</td>
             <td>${tx.occurrenceDate ?? ''}</td>
-            <td>${formatCurrency(tx.value)}</td>
+            <td class="${tx.value < 0 ? 'negative' : 'positive'}">${formatCurrency(tx.value)}</td>
             <td>${tx.cpf ?? ''}</td>
             <td>${tx.card ?? ''}</td>
-            <td>${tx.storeOwner ?? ''}</td>
           </tr>
         `).join('')}
       </tbody>
     `;
 
     txDiv.appendChild(table);
+    txDiv.style.display = 'none';
 
     header.addEventListener('click', () => {
-      txDiv.style.display = txDiv.style.display === 'none' ? 'block' : 'none';
+      const visible = txDiv.style.display === 'block';
+      txDiv.style.display = visible ? 'none' : 'block';
+      header.querySelector('.arrow').textContent = visible ? '▼' : '▲';
     });
 
     storeDiv.appendChild(header);
