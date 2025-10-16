@@ -30,29 +30,33 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function loadTransactions() {
-  const container = document.getElementById('transactionsContainer');
-  container.innerHTML = '<div>Loading...</div>';
+    const container = document.getElementById('transactionsContainer');
+    const totalDiv = document.getElementById('totalBalance');
+    container.innerHTML = '<div>Loading...</div>';
+    totalDiv.textContent = '';
 
-  const filterBody = {
-    filters: [], // without filter = returns everything
-    pageNumber: 1,
-    itemsPerPage: 10000
-  };
+    const filterBody = {
+        filters: [],
+        pageNumber: 1,
+        itemsPerPage: 10000,
+    };
 
-  try {
-    const data = await getFinancialTransactionsByFilter(filterBody);
+    try {
+        const data = await getFinancialTransactionsByFilter(filterBody);
+        const transactions = data.resultsInPage;
+      
+        const totalGeneral = transactions.reduce((sum, t) => sum + (t.value || 0), 0);
+        totalDiv.innerHTML = `Total Balance: <span class="${totalGeneral < 0 ? 'negative' : 'positive'}">${formatCurrency(totalGeneral)}</span>`;
 
-    const grouped = groupByStore(data.resultsInPage);
-
-    console.log('Grouped transactions:', grouped);
-
-    renderStores(grouped);
-
-  } catch (error) {
-    console.error('Erro ao carregar transações:', error);
-    container.innerHTML = '<div>Error loading transactions.</div>';
-  }
+        const grouped = groupByStore(transactions);
+        renderStores(grouped);
+    } catch (error) {
+        console.error('Erro ao carregar transações:', error);
+        container.innerHTML = '<div>Error loading transactions.</div>';
+        totalDiv.textContent = '';
+    }
 }
+
 
 function renderStores(grouped) {
   const container = document.getElementById('transactionsContainer');
