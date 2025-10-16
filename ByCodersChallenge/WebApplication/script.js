@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function loadTransactions() {
-  const tbody = document.getElementById('transactionsBody');
-  tbody.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
+  const container = document.getElementById('transactionsContainer');
+  container.innerHTML = '<div>Loading...</div>';
 
   const filterBody = {
     filters: [], // without filter = returns everything
@@ -34,27 +34,87 @@ async function loadTransactions() {
   try {
     const data = await getFinancialTransactionsByFilter(filterBody);
 
-    if (!data || data.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="4">No records found.</td></tr>';
-      return;
-    }
+    const grouped = groupByStore(data.resultsInPage);
 
-    tbody.innerHTML = data.resultsInPage.map(item => `
-      <tr>
-        <td>${item.type ?? ''}</td>
-        <td>${item.occurrenceDate ?? ''}</td>
-        <td>${formatCurrency(item.value) ?? ''}</td>
-        <td>${item.cpf ?? ''}</td>
-        <td>${item.card ?? ''}</td>
-        <td>${item.storeName ?? ''}</td>
-        <td>${item.storeOwner ?? ''}</td>
-      </tr>
-    `).join('');
+    console.log('Grouped transactions:', grouped);
+
+    renderStores(grouped);
 
   } catch (error) {
     console.error('Erro ao carregar transações:', error);
-    tbody.innerHTML = '<tr><td colspan="4">Error loading transactions.</td></tr>';
+    container.innerHTML = '<div>Error loading transactions.</div>';
   }
+}
+
+function renderStores(grouped) {
+  const container = document.getElementById('transactionsContainer');
+  container.innerHTML = '';
+
+  Object.entries(grouped).forEach(([store, transactions]) => {
+    const totalValue = transactions.reduce((sum, t) => sum + (t.value || 0), 0);
+    const totalCount = transactions.length;
+
+    const storeDiv = document.createElement('div');
+    storeDiv.className = 'store';
+
+    const header = document.createElement('div');
+    header.className = 'store-header';
+    header.innerHTML = `
+      <span>${store}</span>
+      <span>${totalCount} transactions | ${formatCurrency(totalValue)}</span>
+    `;
+
+    const txDiv = document.createElement('div');
+    txDiv.className = 'transactions';
+
+    const table = document.createElement('table');
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Transaction Type</th>
+          <th>Date</th>
+          <th>Value</th>
+          <th>CPF</th>
+          <th>Card</th>
+          <th>Store Owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${transactions.map(tx => `
+          <tr>
+            <td>${tx.transactionType ?? ''}</td>
+            <td>${tx.occurrenceDate ?? ''}</td>
+            <td>${formatCurrency(tx.value)}</td>
+            <td>${tx.cpf ?? ''}</td>
+            <td>${tx.card ?? ''}</td>
+            <td>${tx.storeOwner ?? ''}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    `;
+
+    txDiv.appendChild(table);
+
+    header.addEventListener('click', () => {
+      txDiv.style.display = txDiv.style.display === 'none' ? 'block' : 'none';
+    });
+
+    storeDiv.appendChild(header);
+    storeDiv.appendChild(txDiv);
+    container.appendChild(storeDiv);
+  });
+}
+
+function groupByStore(transactions) {
+  const groups = {};
+
+  transactions.forEach(tx => {
+    const store = tx.storeName || 'Unknown';
+    if (!groups[store]) groups[store] = [];
+    groups[store].push(tx);
+  });
+
+  return groups;
 }
 
 function formatCurrency(value) {
@@ -107,20 +167,4 @@ async function getFinancialTransactionsByFilter(filterBody) {
     console.error('Error fetching transactions:', error);
     throw error;
   }
-}
-
-async function filterTransactions() {
-  const filterBody = {
-    filters: [
-    //   {
-    //     filterType: "Containing",
-    //     filterProperty: "description",
-    //     filterValue: "Supermercado"
-    //   }
-    ],
-    pageNumber: 1,
-    itemsPerPage: 10000
-  };
-
-  const resultData = await getFinancialTransactionsByFilter(filterBody); 
 }
