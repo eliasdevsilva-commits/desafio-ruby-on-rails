@@ -10,9 +10,11 @@ using ByCodersChallenge.Core.Application.Services.FinancialTransactions.Interfac
 using ByCodersChallenge.Core.Application.UseCases.FinancialTransactions;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ByCodersChallenge.Core.Configurations
 {
+    [ExcludeFromCodeCoverage]
     public static class ServiceCollectionExtentions
     {
         public static void MapUseCases(this IServiceCollection service)
