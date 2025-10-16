@@ -71,7 +71,7 @@ Endpoint used to retrieve data from the API. Access query stack use case:
     }
   ],
   "pageNumber": 1,
-  "itemsPerPage": 10
+  "itemsPerPage": 10000
 }
 ```
 
@@ -93,6 +93,8 @@ public enum FilterType
     NotEmpty
 }
 ```
+
+Just for practical reasons, the application will retrieve data, calling get-by-filter with page = 1 and itemsPerPage = 1000
 
 # How to setup and run the application.
 Just run the command:
