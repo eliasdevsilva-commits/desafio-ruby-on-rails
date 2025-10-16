@@ -34,7 +34,7 @@ namespace ByCodersChallenge.Core.Tests.Application.Services.FinancialTransaction
 
             firstTransaction.Type.Should().Be(TransactionType.Financing);
             firstTransaction.OccurrenceDate.Should().Be(new DateTime(2019, 03, 01, 15, 34, 53));
-            firstTransaction.Value.Should().Be(142.00m);
+            firstTransaction.Value.Should().Be(-142.00m);
             firstTransaction.CPF.Should().Be("09620676017");
             firstTransaction.Card.Should().Be("4753****3153");
             firstTransaction.Store.Owner.Should().Be("JOÃO MACEDO");

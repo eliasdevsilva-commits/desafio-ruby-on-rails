@@ -34,7 +34,6 @@
     <Folder Include="Application\Cqrs\QueryProvider\" />
     <Folder Include="Application\UseCases\" />
     <Folder Include="Domain\Cqrs\CommandProviders\" />
-    <Folder Include="Domain\Entities\" />
 	<Folder Include="Domain\Entities\Builders" />
     <Folder Include="Domain\Repositories\" />
     <Folder Include="Exceptions\" />

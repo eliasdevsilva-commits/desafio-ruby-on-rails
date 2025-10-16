@@ -1,23 +1,35 @@
 ﻿using BasePoint.Core.Domain.Entities;
 using ByCodersChallenge.Core.Domain.Enumerators;
+using ByCodersChallenge.Core.Extensions;
 
 namespace ByCodersChallenge.Core.Domain.Entities
 {
-    public class FinancialTransaction(
-        TransactionType type,
-        DateTime occurrenceDate,
-        decimal value,
-        string cpf,
-        string card,
-        Store store) : BaseEntity
+    public class FinancialTransaction : BaseEntity
     {
-        public virtual TransactionType Type { get; protected set; } = type;
-        public virtual DateTime OccurrenceDate { get; protected set; } = occurrenceDate;
-        public virtual decimal Value { get; protected set; } = value;
-        public virtual string CPF { get; protected set; } = cpf;
-        public virtual string Card { get; protected set; } = card;
+        public FinancialTransaction(
+            TransactionType type,
+            DateTime occurrenceDate,
+            decimal value,
+            string cpf,
+            string card,
+            Store store)
+        {
+            Type = type;
+            OccurrenceDate = occurrenceDate;
+            Value = value;
+            CPF = cpf;
+            Card = card;
+            Store = store;
+        }
 
-        public virtual Store Store { get; protected set; } = store;
+        private decimal _decimalValue;
+        public virtual TransactionType Type { get; protected set; }
+        public virtual DateTime OccurrenceDate { get; protected set; }
+        public virtual decimal Value { get { return Type.GetSignedValue(Math.Abs(_decimalValue)); } protected set { _decimalValue = Math.Abs(value); } }
+        public virtual string CPF { get; protected set; }
+        public virtual string Card { get; protected set; }
+
+        public virtual Store Store { get; protected set; }
 
         public void UpdateCard(string card)
         {
