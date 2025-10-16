@@ -19,6 +19,12 @@ form.addEventListener('submit', async (event) => {
   await loadTransactions();
 });
 
+header.addEventListener('click', () => {
+  const isVisible = txDiv.style.display !== 'none';
+  txDiv.style.display = isVisible ? 'none' : 'block';
+  header.classList.toggle('active', !isVisible);
+});
+
 document.addEventListener('DOMContentLoaded', async () => {
   await loadTransactions();
 });
