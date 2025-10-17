@@ -12,7 +12,8 @@ For implementing this **assessment**, I've used several best practices, such as:
 3. Clean Architecture, UnitOfWork, CQS (Separating Command and Query)  
 4. Standardization of unit test names based on BDD  
 5. For Unit Tests: XUnit, FluentAssertions, Embedded files, Builder Pattern (for clean unit tests)
-6. DBUp for database migration
+6. MySql Database
+7. DBUp for database migration
 
 I've used a framework called [BasePoint](https://basepointweb.io/), that I'm creating from scratch.  
 This framework implements best practices that are used in the market. I've decided to create this framework just for study and **shaping my skills**.
@@ -105,3 +106,9 @@ Optionally, run **RunCompose.sh** on Linux, giving the necessary permission with
  The containers for MySQL, API, and web application will be started, and database tables will be created.
 
 Access the application at: http://localhost:3000/
+
+Access the api at: http://localhost:3000/
+
+Access the MySqlServer at: http://localhost:3307/
+    UserName: bycoders
+    Password: 123456
