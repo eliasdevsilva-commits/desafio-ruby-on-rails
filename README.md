@@ -12,6 +12,7 @@ For implementing this **assessment**, I've used several best practices, such as:
 3. Clean Architecture, UnitOfWork, CQS (Separating Command and Query)  
 4. Standardization of unit test names based on BDD  
 5. For Unit Tests: XUnit, FluentAssertions, Embedded files, Builder Pattern (for clean unit tests)
+6. DBUp for database migration
 
 I've used a framework called [BasePoint](https://basepointweb.io/), that I'm creating from scratch.  
 This framework implements best practices that are used in the market. I've decided to create this framework just for study and **shaping my skills**.
@@ -98,6 +99,9 @@ Just for practical reasons, the application will retrieve data, calling get-by-f
 
 # How to setup and run the application.
 Just run the command:
-docker-compose up --build in the ./ByCodersChallenge folder where docker-compose.yml is located. The containers for MySQL, API, and web application will be started.
+docker-compose up --build in the ./ByCodersChallenge folder where docker-compose.yml is located.
+Optionally, run **RunCompose.sh** on Linux, giving the necessary permission with **chmod +x RunCompose.sh** if needed, Or **RunCompose.bat** on Windows.
+
+ The containers for MySQL, API, and web application will be started, and database tables will be created.
 
 Access the application at: http://localhost:3000/
