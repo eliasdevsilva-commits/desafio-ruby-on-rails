@@ -107,7 +107,7 @@ Optionally, run **RunCompose.sh** on Linux, giving the necessary permission with
 
 Access the application at: http://localhost:3000/
 
-Access the api at: http://localhost:3000/
+Access the api at: http://localhost:8080/
 
 Access the MySqlServer at: http://localhost:3307/
     UserName: bycoders
