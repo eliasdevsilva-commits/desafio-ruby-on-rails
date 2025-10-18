@@ -27,7 +27,8 @@ The structure of projects in the solution template is:
 
 **ByCodersChallenge.Cqrs.Dapper:**  
 - Implements **Commands and Queries** from CQS using Dapper. Contains base classes that provide a lot of **common behavior**, including the possibility to **avoid writing insert, update, and delete commands** for persisting entities data, based on entity state. Yes, i know that EntityFramework already controls the context and state of entities to persist, but i just want this behavior independent of persistence technology.
-  **OBS:** If we want to implement on EntityFramework or ADO, for example, we would create a project `ByCodersChallenge.Cqrs.EntityFramework` or `ByCodersChallenge.Cqrs.ADO`, `ByCodersChallenge.Cqrs.NHibernate`. This separates the technologies and gives the choice to remove or add another easily.
+
+**OBS:** If we want to implement on EntityFramework or ADO, for example, we would create a project `ByCodersChallenge.Cqrs.EntityFramework` or `ByCodersChallenge.Cqrs.ADO`, `ByCodersChallenge.Cqrs.NHibernate`. This separates the technologies and gives the choice to remove or add another easily.
 
 **ByCodersChallenge.Presentation.AspNetCoreApi:**  
 - Presentation layer, implemented in ASP.NET Core. If we want to implement with another technology, it would be `ByCodersChallenge.Presentation.TechnologyName`.  
@@ -59,7 +60,7 @@ Endpoint used to import CNAE data to api:
 }
 ```
 
-Endpoint used to retrieve data from the API. Access query stack use case:
+Endpoint used to retrieve financial transactions with their amount balance from the API. Access query stack use case:
 ### POST `/api/financial-transactions/get-by-filter`
 
 **Body:**
