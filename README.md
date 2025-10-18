@@ -26,7 +26,7 @@ The structure of projects in the solution template is:
 - Agnostic from technology, implements **domain layer**, **application layer**, and declares interfaces that will be implemented in the infrastructure layer (`ByCodersChallenge.Cqrs.Dapper`)
 
 **ByCodersChallenge.Cqrs.Dapper:**  
-- Implements **Commands and Queries** from CQS using Dapper. Contains base classes that provide a lot of **common behavior**, including the possibility to **avoid writing insert, update, and delete commands** for persisting entities data, based on entity state.  
+- Implements **Commands and Queries** from CQS using Dapper. Contains base classes that provide a lot of **common behavior**, including the possibility to **avoid writing insert, update, and delete commands** for persisting entities data, based on entity state. Yes, i know that EntityFramework already controls the context and state of entities to persist, but i just want this behavior independent of persistence technology.
   **OBS:** If we want to implement on EntityFramework or ADO, for example, we would create a project `ByCodersChallenge.Cqrs.EntityFramework` or `ByCodersChallenge.Cqrs.ADO`, `ByCodersChallenge.Cqrs.NHibernate`. This separates the technologies and gives the choice to remove or add another easily.
 
 **ByCodersChallenge.Presentation.AspNetCoreApi:**  
