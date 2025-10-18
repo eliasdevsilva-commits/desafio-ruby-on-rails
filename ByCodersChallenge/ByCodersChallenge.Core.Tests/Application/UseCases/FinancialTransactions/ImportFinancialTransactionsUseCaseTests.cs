@@ -80,6 +80,7 @@ namespace ByCodersChallenge.Core.Tests.Application.UseCases.FinancialTransaction
             _unitOfWork.Verify(x => x.SaveChangesAsync(), Times.Once);
             _convertFinancialTransactionStringsToFinancialTransactions.Verify(x => x.Convert(It.IsAny<MemoryStream>()), Times.Once);
             _storeRepository.Verify(x => x.GetStoreByName(It.IsAny<string>()), Times.Exactly(1));
+            _storeRepository.Verify(x => x.Persist(It.IsAny<Store>(), It.IsAny<IUnitOfWork>()), Times.Once);
         }
 
         [Fact]
@@ -106,6 +107,7 @@ namespace ByCodersChallenge.Core.Tests.Application.UseCases.FinancialTransaction
             _unitOfWork.Verify(x => x.SaveChangesAsync(), Times.Once);
             _convertFinancialTransactionStringsToFinancialTransactions.Verify(x => x.Convert(It.IsAny<MemoryStream>()), Times.Once);
             _storeRepository.Verify(x => x.GetStoreByName(It.IsAny<string>()), Times.Exactly(1));
+            _storeRepository.Verify(x => x.Persist(It.IsAny<Store>(), It.IsAny<IUnitOfWork>()), Times.Never);
         }
 
         [Fact]
