@@ -1,6 +1,9 @@
-﻿using ByCodersChallenge.Core.Application.Services.FinancialTransactions.Interfaces;
+﻿using BasePoint.Core.Exceptions;
+using BasePoint.Core.Extensions;
+using ByCodersChallenge.Core.Application.Services.FinancialTransactions.Interfaces;
 using ByCodersChallenge.Core.Domain.Entities;
 using ByCodersChallenge.Core.Domain.Enumerators;
+using ByCodersChallenge.Core.Shared;
 using System.Globalization;
 
 namespace ByCodersChallenge.Core.Application.Services.FinancialTransactions
@@ -11,6 +14,12 @@ namespace ByCodersChallenge.Core.Application.Services.FinancialTransactions
         {
             var lines = GetStreamLines(memoryStream);
             var transactions = new List<FinancialTransaction>();
+
+            var emptyLines = lines.Where(x => x.IsEmpty());
+
+            ValidationException.ThrowIfNotEmpty(emptyLines, SharedConstants.ErrorMessages.FileContainsInvalidLines);
+
+            ValidationException.ThrowIfHasDuplicates(lines, SharedConstants.ErrorMessages.FileContainsDuplicatedLines, lineContent => lineContent);
 
             foreach (var line in lines)
             {

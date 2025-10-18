@@ -15,6 +15,10 @@
             public static readonly string GivenStoreIsInvalid = "005;Given Store name is invalid.";
 
             public static readonly string TransactionTypeIsInvalid = "006;Transaction type is invalid.";
+
+            public static readonly string FileContainsInvalidLines = "007;CNAB Files contains invalid lines.";
+
+            public static readonly string FileContainsDuplicatedLines = "008;CNAB Files contains duplicated lines.";
         }
 
         public static class Restrictions
