@@ -1,4 +1,5 @@
 ﻿using BasePoint.Core.Application.UseCases;
+using BasePoint.Core.Extensions;
 using BasePoint.Core.UnitOfWork.Interfaces;
 using ByCodersChallenge.Core.Application.Dtos.FinancialTransactions;
 using ByCodersChallenge.Core.Application.Services.FinancialTransactions.Interfaces;
@@ -64,8 +65,7 @@ namespace ByCodersChallenge.Core.Application.UseCases.FinancialTransactions
             {
                 var previousStore = await _storeRepository.GetStoreByName(store.Name);
 
-                if (previousStore is not null)
-                    previousStores.Add(previousStore);
+                previousStores.SafeAdd(previousStore);
             }
 
             var storeNames = previousStores.Select(x => x.Name);

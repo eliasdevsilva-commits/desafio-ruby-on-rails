@@ -42,8 +42,6 @@ namespace ByCodersChallenge.Core.Tests.Domain.Entities
         [Fact]
         public void Constructor_WhenStoreIsNullShouldThrowValidationException()
         {
-            var store = new StoreBuilder().Build();
-
             var ocurrenceDate = DateTime.Now;
 
             Action createEntity = () => new FinancialTransaction(
