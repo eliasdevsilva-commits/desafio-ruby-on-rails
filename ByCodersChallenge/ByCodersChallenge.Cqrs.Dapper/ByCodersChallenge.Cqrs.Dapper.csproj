@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BasePoint.Core.Cqrs.Dapper" Version="0.0.21" />
+    <PackageReference Include="BasePoint.Core.Cqrs.Dapper" Version="0.0.23" />
     <PackageReference Include="dbup-mysql" Version="5.0.44" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />

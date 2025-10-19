@@ -15,9 +15,9 @@ namespace ByCodersChallenge.Core.Application.Services.FinancialTransactions
             var lines = GetStreamLines(memoryStream);
             var transactions = new List<FinancialTransaction>();
 
-            var emptyLines = lines.Where(x => x.IsEmpty());
+            var invalidLines = lines.WhereIsEmpty(x => x);
 
-            ValidationException.ThrowIfNotEmpty(emptyLines, SharedConstants.ErrorMessages.FileContainsInvalidLines);
+            ValidationException.ThrowIfNotEmpty(invalidLines, SharedConstants.ErrorMessages.FileContainsInvalidLines);
 
             ValidationException.ThrowIfHasDuplicates(lines, SharedConstants.ErrorMessages.FileContainsDuplicatedLines, lineContent => lineContent);
 
